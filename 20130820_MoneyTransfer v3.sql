@@ -59,13 +59,13 @@
            (SELECT 
               AccRg588.Frecorderrref as RecordID,                           
               AccRg588.Faccountdtrref as Account,
-              AccRg588.Ffld645rref as Organisation,
+              AccRg588.FFld589RRef as Organisation,
               AccRg588.Frecordertref as Registrator,
               AccRg588.Fperiod as Period,
-              AccRg588.Ffld646dtrref as Currency,
-              AccRg588.Ffld650 as TextDescription,
-              AccRg588.Ffld647 as InPut_Amount,
-              AccRg588.Ffld648dt as InPut_CurrencyAmount,
+              AccRg588.FFld590DtRRef as Currency,
+              AccRg588.FFld594 as TextDescription,
+              AccRg588.FFld591 as InPut_Amount,
+              AccRg588.FFld592Dt as InPut_CurrencyAmount,
               0 as OutPut_Amount,
               0 as OutPut_CurrencyAmount
            FROM AccRg588, vSCAccMapping 
@@ -77,15 +77,15 @@
            Select
               AccRg588.Frecorderrref,   
               AccRg588.Faccountctrref,
-              AccRg588.Ffld645rref,
+              AccRg588.FFld589RRef,
               AccRg588.Frecordertref,
               AccRg588.Fperiod,
-              AccRg588.Ffld646ctrref,
-              AccRg588.Ffld650,
+              AccRg588.FFld590CtRRef,
+              AccRg588.FFld594,
               0,
               0,
-              AccRg588.Ffld647,
-              AccRg588.Ffld648ct
+              AccRg588.FFld591,
+              AccRg588.FFld592Ct
            From AccRg588, vSCAccMapping
            WHERE AccRg588.Faccountctrref = vSCAccMapping.AccRefID
                  and trunc(AccRg588.Fperiod) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')) MoneyTable  
@@ -110,18 +110,18 @@
                    (
                     -- Платежный ордер на списание денежных средств           
                     select  
-                        Document202.Fnumber,
-                        Document202.Fidrref,
-                        Document202.Ffld6423 as DocBankNumber,                    
-                        --Document202.Ffld6432rref as OperationType,
-                        Document202.Ffld6422rref as BankAccountClient,
-                        Document202.Ffld6421rref as Client,
-                        Document202.Ffld6425rref as Contract,
-                        Document202.Ffld6420rref as BankAccountBranch,
+                        Document209.Fnumber,
+                        Document209.Fidrref,
+                        Document209.FFld6540 as DocBankNumber,                    
+                        --Document209.Ffld6432rref as OperationType,
+                        Document209.FFld6539RRef as BankAccountClient,
+                        Document209.FFld6538RRef as Client,
+                        Document209.FFld6542RRef as Contract,
+                        Document209.FFld6537RRef as BankAccountBranch,
                        'Платежный ордер на списание денежных средств' as DocType,
-                        DBMS_LOB.SUBSTR(Document202.Ffld6426, 500) as PaymentDescription
-                    from Document202
-                    WHERE trunc(Document202.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
+                        DBMS_LOB.SUBSTR(Document209.FFld6543, 500) as PaymentDescription
+                    from Document209
+                    WHERE trunc(Document209.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
 
                     UNION
                     -- Бухгалтерская операция           
@@ -140,132 +140,133 @@
                     WHERE trunc(Document174.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
 
                     UNION
-                    -- Платежный ордер на поступенине денежных средств           
+                    -- Платежный ордер на поступенине денежных средств
+                    -- замена атрибутов на новые имена пока не делалась
                     select  
-                        Document201.Fnumber,
-                        Document201.Fidrref,
-                        Document201.Ffld6327,                    
-                        --Document201.Ffld6326rref,
-                        Document201.Ffld6343rref,
-                        Document201.Ffld6333rref, 
-                        Document201.Ffld6329rref, 
-                        Document201.Ffld6344rref,
+                        Document208.Fnumber,
+                        Document208.Fidrref,
+                        Document208.FFld6442,                    
+                        --Document208.Ffld6326rref,
+                        Document208.FFld6458RRef,
+                        Document208.FFld6448RRef, 
+                        Document208.FFld6444RRef, 
+                        Document208.FFld6459RRef,
                         'Платежный ордер на поступление денежных средств' as DocType,
-                        DBMS_LOB.SUBSTR(Document201.Ffld6368, 500) as PaymentDescription
-                    from Document201
-                    WHERE trunc(Document201.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
+                        DBMS_LOB.SUBSTR(Document208.FFld6483, 500) as PaymentDescription
+                    from Document208
+                    WHERE trunc(Document208.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
                                           
                     UNION
                     -- Платежное поручение входящее            
                     select  
-                        Document198.Fnumber,
-                        Document198.Fidrref,
-                        Document198.Ffld6057,                    
-                        --Document198.Ffld6052rref,
-                        Document198.Ffld6068rref,
-                        Document198.fFld6056RRef,
-                        Document198.fFld6053RRef, 
-                        Document198.fFld6069RRef, 
+                        Document205.Fnumber,
+                        Document205.Fidrref,
+                        Document205.FFld6170,                    
+                        --Document205.Ffld6052rref,
+                        Document205.FFld6181RRef,
+                        Document205.FFld6169RRef,
+                        Document205.FFld6166RRef, 
+                        Document205.FFld6182RRef, 
                         'Платежное поручение входящее' as DocType,                    
-                        DBMS_LOB.SUBSTR(Document198.Ffld6092, 500)
-                    from Document198
-                    WHERE trunc(Document198.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                        DBMS_LOB.SUBSTR(Document205.FFld6205, 500)
+                    from Document205
+                    WHERE trunc(Document205.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
                     
                     UNION
                     -- Платежное поручение исходящее            
                     select  
-                        Document199.Fnumber,
-                        Document199.Fidrref,
+                        Document206.Fnumber,
+                        Document206.Fidrref,
                         '',                    
-                        --Document199.Ffld6155rref,
-                        Document199.Ffld6131rref,
-                        Document199.Ffld6130rref,
-                        Document199.fFld6132RRef,
-                        Document199.fFld6129RRef,
+                        --Document206.Ffld6155rref,
+                        Document206.FFld6244RRef,
+                        Document206.FFld6243RRef,
+                        Document206.FFld6245RRef,
+                        Document206.FFld6242RRef,
                         'Платежное поручение исходящее' as DocType,                    
-                        DBMS_LOB.SUBSTR(Document199.Ffld6135, 500)
-                    from Document199
-                    WHERE trunc(Document199.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                        DBMS_LOB.SUBSTR(Document206.FFld6248, 500)
+                    from Document206
+                    WHERE trunc(Document206.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
                       
                     UNION
                     -- Платежное требование выставленное            
                     select  
-                        Document200.Fnumber,
-                        Document200.Fidrref,
+                        Document207.Fnumber,
+                        Document207.Fidrref,
                         '',                    
-                        --Document200.Ffld6260rref,
-                        Document200.Ffld6257rref,  
-                        Document200.fFld6256RRef,
-                        Document200.fFld6261RRef,
-                        Document200.fFld6255RRef,
+                        --Document207.Ffld6260rref,
+                        Document207.FFld6372RRef,  
+                        Document207.FFld6371RRef,
+                        Document207.FFld6376RRef,
+                        Document207.FFld6370RRef,
                         'Платежное требование выставленное' as DocType,                     
-                        DBMS_LOB.SUBSTR(Document200.Ffld6276, 500)
-                    from Document200
-                    WHERE trunc(Document200.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                        DBMS_LOB.SUBSTR(Document207.FFld6391, 500)
+                    from Document207
+                    WHERE trunc(Document207.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
 
                     UNION
                     -- Приходный кассовый ордер           
                     select  
-                        Document213.Fnumber,
-                        Document213.Fidrref,
+                        Document220.Fnumber,
+                        Document220.Fidrref,
                         '',                    
-                        --Document213.Ffld7117rref,
+                        --Document220.Ffld7117rref,
                         NULL,
-                        Document213.fFld7118_RRRef,
-                        Document213.fFld7119RRef,
+                        Document220.FFld7243_RRRef,
+                        Document220.FFld7244RRef,
                         NULL,
                         'Приходный кассовый ордер' as DocType,                     
-                        DBMS_LOB.SUBSTR(Document213.Ffld7123, 500)
-                    from Document213
-                    WHERE trunc(Document213.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                        DBMS_LOB.SUBSTR(Document220.FFld7248, 500)
+                    from Document220
+                    WHERE trunc(Document220.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
 
                     UNION
                     -- Приходный кассовый ордер валютный           
                     select  
-                        Document214.Fnumber,
-                        Document214.Fidrref,
+                        Document221.Fnumber,
+                        Document221.Fidrref,
                         '',                    
-                        --Document214.Ffld7203rref,
+                        --Document221.Ffld7203rref,
                         NULL,
-                        Document214.fFld7204_RRRef,
-                        Document214.fFld7205RRef,
+                        Document221.FFld7329_RRRef,
+                        Document221.FFld7330RRef,
                         NULL,
                         'Приходный кассовый ордер валютный' as DocType,                     
-                        DBMS_LOB.SUBSTR(Document214.Ffld7209, 500)
-                    from Document214
-                    WHERE trunc(Document214.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                        DBMS_LOB.SUBSTR(Document221.FFld7334, 500)
+                    from Document221
+                    WHERE trunc(Document221.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
 
                     UNION
                     -- Расходный кассовый ордер           
                     select  
-                        Document216.Fnumber,
-                        Document216.Fidrref,
+                        Document223.Fnumber,
+                        Document223.Fidrref,
                         '',                    
-                        --Document216.Ffld7357rref,
+                        --Document223.Ffld7357rref,
                         NULL,
-                        Document216.fFld7360_RRRef, 
-                        Document216.fFld7361RRef,
+                        Document223.FFld7485_RRRef, 
+                        Document223.FFld7486RRef,
                         NULL,
                         'Расходный кассовый ордер' as DocType,                    
-                        DBMS_LOB.SUBSTR(Document216.Ffld7365, 500)
-                    from Document216
-                    WHERE trunc(Document216.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                        DBMS_LOB.SUBSTR(Document223.FFld7490, 500)
+                    from Document223
+                    WHERE trunc(Document223.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
 
                     UNION
                      -- Расходный кассовый ордер валютный           
                     select  
-                        Document217.Fnumber,
-                        Document217.Fidrref,
+                        Document224.Fnumber,
+                        Document224.Fidrref,
                         '',                    
-                        --Document217.Ffld7438rref,
+                        --Document224.Ffld7438rref,
                         NULL,
-                        Document217.fFld7441_RRRef,
-                        Document217.fFld7442RRef,
+                        Document224.FFld7566_RRRef,
+                        Document224.FFld7567RRef,
                         NULL,
                         'Расходный кассовый ордер валютный' as DocType,                    
-                        DBMS_LOB.SUBSTR(Document217.Ffld7446, 500)
-                    from Document217
-                    WHERE trunc(Document217.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')) DocTable
+                        DBMS_LOB.SUBSTR(Document224.FFld7571, 500)
+                    from Document224
+                    WHERE trunc(Document224.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')) DocTable
                     
            left join Reference48 ClientObject   on (DocTable.Client       = ClientObject.FIDRRef)
            left join Reference36 ContractObject on (DocTable.Contract     = ContractObject.FIDRRef)
