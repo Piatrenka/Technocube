@@ -70,7 +70,7 @@
               0 as OutPut_CurrencyAmount
            FROM AccRg588, vSCAccMapping 
            WHERE AccRg588.Faccountdtrref = vSCAccMapping.AccRefID 
-                 and trunc(AccRg588.Fperiod) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
+                 and trunc(AccRg588.Fperiod) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')
                      
            UNION ALL
                                     
@@ -88,9 +88,9 @@
               AccRg588.FFld592Ct
            From AccRg588, vSCAccMapping
            WHERE AccRg588.Faccountctrref = vSCAccMapping.AccRefID
-                 and trunc(AccRg588.Fperiod) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')) MoneyTable  
+                 and trunc(AccRg588.Fperiod) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')) MoneyTable  
            
-         left join Reference23 CurrenceObject   on (MoneyTable.Currency = CurrenceObject.FIDRRef)
+         left join Reference26 CurrenceObject   on (MoneyTable.Currency = CurrenceObject.FIDRRef)
          left join Acc21 AccObject              on (MoneyTable.Account  = AccObject.Fidrref)
          left join Reference60 BranchObject  on (MoneyTable.Organisation = BranchObject.FIDRRef)) MTable
      
@@ -121,7 +121,7 @@
                        'Платежный ордер на списание денежных средств' as DocType,
                         DBMS_LOB.SUBSTR(Document209.FFld6543, 500) as PaymentDescription
                     from Document209
-                    WHERE trunc(Document209.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
+                    WHERE trunc(Document209.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')
 
                     UNION
                     -- Бухгалтерская операция           
@@ -137,7 +137,7 @@
                         'Бухгалтерская операция' as DocType,
                         ''
                     from Document174
-                    WHERE trunc(Document174.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
+                    WHERE trunc(Document174.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')
 
                     UNION
                     -- Платежный ордер на поступенине денежных средств
@@ -154,7 +154,7 @@
                         'Платежный ордер на поступление денежных средств' as DocType,
                         DBMS_LOB.SUBSTR(Document208.FFld6483, 500) as PaymentDescription
                     from Document208
-                    WHERE trunc(Document208.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')
+                    WHERE trunc(Document208.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')
                                           
                     UNION
                     -- Платежное поручение входящее            
@@ -170,7 +170,7 @@
                         'Платежное поручение входящее' as DocType,                    
                         DBMS_LOB.SUBSTR(Document205.FFld6205, 500)
                     from Document205
-                    WHERE trunc(Document205.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                    WHERE trunc(Document205.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')                
                     
                     UNION
                     -- Платежное поручение исходящее            
@@ -186,7 +186,7 @@
                         'Платежное поручение исходящее' as DocType,                    
                         DBMS_LOB.SUBSTR(Document206.FFld6248, 500)
                     from Document206
-                    WHERE trunc(Document206.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                    WHERE trunc(Document206.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')                
                       
                     UNION
                     -- Платежное требование выставленное            
@@ -202,7 +202,7 @@
                         'Платежное требование выставленное' as DocType,                     
                         DBMS_LOB.SUBSTR(Document207.FFld6391, 500)
                     from Document207
-                    WHERE trunc(Document207.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                    WHERE trunc(Document207.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')                
 
                     UNION
                     -- Приходный кассовый ордер           
@@ -218,7 +218,7 @@
                         'Приходный кассовый ордер' as DocType,                     
                         DBMS_LOB.SUBSTR(Document220.FFld7248, 500)
                     from Document220
-                    WHERE trunc(Document220.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                    WHERE trunc(Document220.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')                
 
                     UNION
                     -- Приходный кассовый ордер валютный           
@@ -234,7 +234,7 @@
                         'Приходный кассовый ордер валютный' as DocType,                     
                         DBMS_LOB.SUBSTR(Document221.FFld7334, 500)
                     from Document221
-                    WHERE trunc(Document221.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                    WHERE trunc(Document221.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')                
 
                     UNION
                     -- Расходный кассовый ордер           
@@ -250,7 +250,7 @@
                         'Расходный кассовый ордер' as DocType,                    
                         DBMS_LOB.SUBSTR(Document223.FFld7490, 500)
                     from Document223
-                    WHERE trunc(Document223.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')                
+                    WHERE trunc(Document223.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')                
 
                     UNION
                      -- Расходный кассовый ордер валютный           
@@ -266,12 +266,12 @@
                         'Расходный кассовый ордер валютный' as DocType,                    
                         DBMS_LOB.SUBSTR(Document224.FFld7571, 500)
                     from Document224
-                    WHERE trunc(Document224.Fdate_Time) BETWEEN to_date('01/01/2012', 'DD/MM/YYYY') And to_date('31/01/2012', 'DD/MM/YYYY')) DocTable
+                    WHERE trunc(Document224.Fdate_Time) BETWEEN to_date('01/01/2015', 'DD/MM/YYYY') And to_date('31/12/2015', 'DD/MM/YYYY')) DocTable
                     
-           left join Reference48 ClientObject   on (DocTable.Client       = ClientObject.FIDRRef)
-           left join Reference36 ContractObject on (DocTable.Contract     = ContractObject.FIDRRef)
-           left join Reference24 BankAccBranch  on (DocTable.BankAccountBranch  = BankAccBranch.FIDRRef)
-           left join Reference24 BankAccClient  on (DocTable.BankAccountClient  = BankAccClient.FIDRRef)                                      
+           left join Reference51 ClientObject   on (DocTable.Client       = ClientObject.FIDRRef)
+           left join Reference39 ContractObject on (DocTable.Contract     = ContractObject.FIDRRef)
+           left join Reference27 BankAccBranch  on (DocTable.BankAccountBranch  = BankAccBranch.FIDRRef)
+           left join Reference27 BankAccClient  on (DocTable.BankAccountClient  = BankAccClient.FIDRRef)                                      
                ) Doc on (Doc.Fidrref = MTable.Registrator)    
 
 
